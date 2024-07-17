@@ -34,5 +34,11 @@
         <img src="{{ img_url }}" alt="Stock Plot">
         <p>Generated img_url: {{ img_url }}</p>
     {% endif %}
+    <script>
+        const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+        fetch(`${API_URL}/endpoint`)
+            .then(response => response.json())
+            .then(data => console.log(data));
+    </script>
 </body>
 </html>

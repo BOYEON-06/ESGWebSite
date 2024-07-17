@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, send_file, url_for
+from flask_cors import CORS
 import crawler
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
@@ -19,6 +20,7 @@ import io
 import numpy as np
 
 app = Flask(__name__) 
+CORS(app)
 
 def get_stock_code(company_name):
     service = Service(ChromeDriverManager().install())
