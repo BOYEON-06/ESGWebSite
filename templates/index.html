@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ESG 관련 뉴스 ({{ current_time }})</h1>
+    <ul>
+        {% for title, link in data %}
+            <li><a href="{{ link }}">{{ title }}</a></li>
+        {% endfor %}
+    </ul>
+    <form method="POST" action="/">
+        <label for="company_name">Company Name:</label>
+        <input type="text" id="company_name" name="company_name" value="{{ company_name }}" required>
+        <button type="submit" name="get_stock_code">Get Stock Code</button>
+    </form>
+    {% if stock_code %}
+        <p>Stock Code: {{ stock_code }}</p>
+    {% endif %}
+    <form method="POST" action="/">
+        <input type="hidden" id="company_name" name="company_name" value="{{ company_name }}">
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+        
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required>
+        
+        <button type="submit" name="plot_stock_data">Plot Stock Data</button>
+    </form>
+    {% if img_url %}
+        <img src="{{ img_url }}" alt="Stock Plot">
+        <p>Generated img_url: {{ img_url }}</p>
+    {% endif %}
+</body>
+</html>
